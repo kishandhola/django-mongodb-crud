@@ -8,18 +8,16 @@ class MyModel(models.Model):
     Attributes:
         name (CharField): The name of the user.
         email (EmailField): The email of the user.
-        password (CharField): The hashed password of the user.
         gender (CharField): The gender of the user.
         dob (DateField): The date of birth of the user.
         country (CharField): The country of the user.
         hobbies (TextField): The hobbies of the user.
         message (CharField): The message of the user.
-        file (FileField): The file uploaded by the user.
         createdAt (DateTimeField): The date and time of creation.
+
     """
     name = models.CharField(max_length=100, default="")
     email = models.EmailField(max_length=100, default="")
-    password = models.CharField(max_length=40, default="")  # The password will be hashed, so max length is sufficient
     gender = models.CharField(max_length=10, choices=[
         ('male', 'Male'),
         ('female', 'Female'),
@@ -35,7 +33,6 @@ class MyModel(models.Model):
 
     hobbies = models.TextField(default='')
     message = models.CharField(max_length=300, default="")
-    file = models.FileField(upload_to='static/', null=False, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
 

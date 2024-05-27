@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User List</title>
+</head>
+
+<body>
+    <h2>User List</h2>
+    <a href="add">Add New Record</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Country</th>
+            <th>Hobbies</th>
+            <th>Message</th>
+            <th>Action </th>
+        </tr>
+        {% if page_obj.data %} {% for user in page_obj.data %}
+        <tr>
+
+            <td>{{ user.name }} </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.dob }}</td>
+            <td>{{ user.country }}</td>
+            <td>{{ user.hobbies }}</td>
+            <td>{{ user.message }}</td>
+
+            <td><a href="edit/{{ user.id }}">Edit</a> &nbsp;<a href="delete/{{ user.id }}">Delete</a></td>
+        </tr>
+        {% endfor %} {% else %}
+        <tr>
+            <td colspan="10" style="text-align: center;">No data Available</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    {% if page_obj.data %}
+    <div class="pagination">
+        <span class="step-links">
+            <a href="?page={{ page_obj.prev_page }}">previous</a>
+    
+            <span class="current">
+                Page {{ page_obj.curent_page }} of {{ page_obj.total_pages }}.
+            </span>
+        <a href="?page={{ page_obj.next_page }}">next</a>
+
+        </span>
+    </div>
+    {% endif %}
+</body>
+
+</html>
